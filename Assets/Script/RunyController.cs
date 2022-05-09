@@ -59,16 +59,20 @@ public class RunyController : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.C))
         {   
-        Launch();
+            Launch();
         }
 
-            if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
-        RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
-        if (hit.collider != null)
-        {
-        Debug.Log("Raycast has hit the object " + hit.collider.gameObject);
-         }
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+            if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                    character.DisplayDialog();
+                }
+            }
         }
     }
     
@@ -97,16 +101,14 @@ public class RunyController : MonoBehaviour
         Debug.Log(currentHealth + "/" + maxHealth);
     }
     void Launch()
-{
-    GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+    {
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
-    Projectile projectile = projectileObject.GetComponent<Projectile>();
-    projectile.Launch(lookDirection, 300);
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        projectile.Launch(lookDirection, 300);
 
-    animator.SetTrigger("Launch");
+        animator.SetTrigger("Launch");
     
-{
+    }
     
-}
-}
 }
