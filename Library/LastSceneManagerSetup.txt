@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/game 2.unity
+- path: Assets/Final Fortnite Move.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
