@@ -13,9 +13,10 @@ public class FrogDestroyer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        void OnCollisionEnter2D(Collision2D other)
+        
+    }
+    void OnTriggerEnter2D(Collider2D other)
         {
              Destroy(gameObject);
         }
-    }
 }
